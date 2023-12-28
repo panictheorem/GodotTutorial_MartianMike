@@ -37,7 +37,7 @@ public partial class Player : CharacterBody2D
 
         Velocity = velocity;
 
-        if (IsOnFloor() && Input.IsActionJustPressed("jump"))
+        if ((IsOnFloor() || IsOnWall()) && Input.IsActionJustPressed("jump"))
         {
             Jump(JumpVelocity);
         }

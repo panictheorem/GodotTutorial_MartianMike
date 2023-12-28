@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class Level : Node2D
 {
@@ -10,6 +11,11 @@ public partial class Level : Node2D
 	{
 		Player = GetNode<Player>("Player");
         StartPosition = GetNode<Marker2D>("StartPosition");
+		var traps = GetTree().GetNodesInGroup("traps");
+		foreach(var trap in traps)
+		{
+			(trap as Trap).OnTouchedPlayer += _on_trap_on_touched_player;
+        }
     }
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -28,12 +34,20 @@ public partial class Level : Node2D
 
 	public void _on_death_zone_body_entered(Node2D body)
 	{
-		var player = body as Player;
-		if(player != null)
+		if(body is Player)
 		{
-			player.Velocity = Vector2.Zero;
-			player.GlobalPosition = StartPosition.GlobalPosition;
-
+			ResetPlayer();
         }
 	}
+
+	public void ResetPlayer()
+	{
+        Player.Velocity = Vector2.Zero;
+        Player.GlobalPosition = StartPosition.GlobalPosition;
+    }
+
+	public void _on_trap_on_touched_player()
+	{
+		ResetPlayer();
+    }
 }
