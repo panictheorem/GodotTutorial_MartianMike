@@ -6,11 +6,13 @@ public partial class Player : CharacterBody2D
     public const float Speed = 125.0f;
     public const float JumpVelocity = 200.0f;
     public const float Gravity = 400.0f;
+    public bool Active { get; set; } = true;
     public AnimatedSprite2D AnimatedSprite2D { get; set; }
-
+    private AudioPlayer audioPlayer;
     public override void _Ready()
     {
         AnimatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+        audioPlayer = GetNode<AudioPlayer>("/root/AudioPlayer");
     }
 
 
@@ -18,18 +20,23 @@ public partial class Player : CharacterBody2D
     {
         var velocity = Velocity;
         //Velocity = Vector2.Zero;
-        if (!IsOnFloor()) { 
+        if (!IsOnFloor())
+        {
 
             velocity.Y += Gravity * (float)delta;
-            if(velocity.Y > 600)
+            if (velocity.Y > 600)
             {
                 velocity.Y = 600;
             }
         }
+        var direction = 0.0f;
 
-        var direction = Input.GetAxis("move_left", "move_right");
-
-        if (direction != 0) { 
+        if (Active)
+        {
+            direction = Input.GetAxis("move_left", "move_right");
+        }
+        if (direction != 0)
+        {
             AnimatedSprite2D.FlipH = direction == -1;
         }
 
@@ -37,9 +44,12 @@ public partial class Player : CharacterBody2D
 
         Velocity = velocity;
 
-        if ((IsOnFloor() || IsOnWall()) && Input.IsActionJustPressed("jump"))
+        if(Active)
         {
-            Jump(JumpVelocity);
+            if ((IsOnFloor() || IsOnWall()) && Input.IsActionJustPressed("jump"))
+            {
+                Jump(JumpVelocity);
+            }
         }
         MoveAndSlide();
         UpdateAnimations(direction);
@@ -47,9 +57,9 @@ public partial class Player : CharacterBody2D
 
     private void UpdateAnimations(float direction)
     {
-        if(IsOnFloor())
+        if (IsOnFloor())
         {
-            if(direction == 0)
+            if (direction == 0)
             {
                 AnimatedSprite2D.Play("idle");
             }
@@ -60,7 +70,7 @@ public partial class Player : CharacterBody2D
         }
         else
         {
-            if(Velocity.Y < 0)
+            if (Velocity.Y < 0)
             {
                 AnimatedSprite2D.Play("jump");
             }
@@ -73,7 +83,7 @@ public partial class Player : CharacterBody2D
 
     public void Jump(float force)
     {
+        audioPlayer.PlaySfx("jump");
         Velocity = new Vector2(Velocity.X, -force);
-        GD.Print($"Jumped: {Velocity.Y}");
     }
 }

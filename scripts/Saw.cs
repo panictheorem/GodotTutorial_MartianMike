@@ -13,9 +13,4 @@ public partial class Saw : Node2D
 	public override void _Process(double delta)
 	{
 	}
-
-	public void Test()
-	{
-		GD.Print("Test 123");
-	}
 }

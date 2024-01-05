@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://by8a0toovfv6u"]
 
 [ext_resource type="Texture2D" uid="uid://bn7d2qwmquulw" path="res://assets/textures/other/Saw.png" id="1_2a1c7"]
-[ext_resource type="Script" path="res://scenes/Trap.cs" id="1_o206g"]
+[ext_resource type="Script" path="res://Trap.cs" id="1_s2614"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_k073w"]
 radius = 17.2627
@@ -45,7 +45,7 @@ _data = {
 }
 
 [node name="Saw" type="Node2D" groups=["traps"]]
-script = ExtResource("1_o206g")
+script = ExtResource("1_s2614")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 8

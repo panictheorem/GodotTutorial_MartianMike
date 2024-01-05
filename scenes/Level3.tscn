@@ -1,0 +1,49 @@
+[gd_scene load_steps=13 format=3 uid="uid://cieeop46f3uxb"]
+
+[ext_resource type="Script" path="res://scripts/Level.cs" id="1_sl6xi"]
+[ext_resource type="PackedScene" uid="uid://d25glr7hst20a" path="res://scenes/TileMap.tscn" id="2_c2hih"]
+[ext_resource type="Texture2D" uid="uid://d1n5dj8k8jsan" path="res://assets/textures/bg/Purple.png" id="3_1ge1l"]
+[ext_resource type="PackedScene" uid="uid://blekvsecxjhb6" path="res://scenes/Bg.tscn" id="3_vanau"]
+[ext_resource type="PackedScene" uid="uid://plbcclfhpj85" path="res://scenes/DeathZone.tscn" id="4_aulfc"]
+[ext_resource type="PackedScene" uid="uid://b0w8wkplj01mg" path="res://scenes/UiLayer.tscn" id="4_ra1dn"]
+[ext_resource type="PackedScene" uid="uid://dmp4kcos4uel4" path="res://scenes/Start.tscn" id="5_bfgk6"]
+[ext_resource type="PackedScene" uid="uid://coa3fpwfooeqb" path="res://scenes/Exit.tscn" id="6_27u8i"]
+[ext_resource type="PackedScene" uid="uid://ci8rib2gm721x" path="res://scenes/Player.tscn" id="7_ng8q2"]
+[ext_resource type="PackedScene" uid="uid://c5h1nlqlm0j7h" path="res://scenes/JumpPad.tscn" id="9_2e447"]
+[ext_resource type="PackedScene" uid="uid://by8a0toovfv6u" path="res://scenes/Saw.tscn" id="10_1iudq"]
+[ext_resource type="PackedScene" uid="uid://dja4242xnmp3n" path="res://scenes/Spikeball.tscn" id="11_k0rhd"]
+
+[node name="Level_3" type="Node2D"]
+script = ExtResource("1_sl6xi")
+IsFinalLevel = true
+
+[node name="BG" parent="." instance=ExtResource("3_vanau")]
+BgTexture = ExtResource("3_1ge1l")
+
+[node name="UILayer" parent="." instance=ExtResource("4_ra1dn")]
+
+[node name="TileMap" parent="." instance=ExtResource("2_c2hih")]
+layer_0/tile_data = PackedInt32Array(917506, 851968, 5, 983042, 851968, 6, 917507, 917504, 5, 983043, 917504, 6, 917512, 851968, 5, 983048, 851968, 6, 917513, 917504, 5, 983049, 917504, 6, 786446, 851968, 5, 851982, 851968, 6, 786447, 917504, 5, 851983, 917504, 6, 917523, 851968, 5, 983059, 851968, 6, 917524, 917504, 5, 983060, 917504, 6, 917504, 851968, 5, 983040, 851968, 6, 917505, 917504, 5, 983041, 917504, 6, 917508, 851968, 5, 983044, 851968, 6, 917509, 917504, 5, 983045, 917504, 6, 327700, 851968, 5, 393236, 851968, 6, 327701, 917504, 5, 393237, 917504, 6, 851994, 851968, 5, 917530, 851968, 6, 851995, 917504, 5, 917531, 917504, 6, 524320, 851968, 5, 589856, 851968, 6, 524321, 917504, 5, 589857, 917504, 6, 655392, 851968, 5, 720928, 851968, 6, 655393, 917504, 5, 720929, 917504, 6, 524322, 851968, 5, 589858, 851968, 6, 524323, 917504, 5, 589859, 917504, 6, 655394, 851968, 5, 720930, 851968, 6, 655395, 917504, 5, 720931, 917504, 6, 393257, 851968, 5, 458793, 851968, 6, 393258, 917504, 5, 458794, 917504, 6, 1179702, 851968, 5, 1245238, 851968, 6, 1179703, 917504, 5, 1245239, 917504, 6, 1179696, 851968, 5, 1245232, 851968, 6, 1179697, 917504, 5, 1245233, 917504, 6, 1179704, 851968, 5, 1245240, 851968, 6, 1179705, 917504, 5, 1245241, 917504, 6, 852016, 851968, 6, 917552, 851968, 5, 852017, 917504, 6, 917553, 917504, 5, 983088, 851968, 6, 983089, 917504, 6, 1048624, 851968, 5, 1114160, 851968, 6, 1048625, 917504, 5, 1114161, 917504, 6, 786480, 851968, 5, 786481, 917504, 5)
+
+[node name="DeathZone" parent="." instance=ExtResource("4_aulfc")]
+
+[node name="Start" parent="." instance=ExtResource("5_bfgk6")]
+position = Vector2(43, 223)
+
+[node name="Exit" parent="." instance=ExtResource("6_27u8i")]
+position = Vector2(896, 288)
+
+[node name="Objects" type="Node2D" parent="."]
+
+[node name="Traps" type="Node2D" parent="."]
+
+[node name="JumpPad" parent="Traps" instance=ExtResource("9_2e447")]
+position = Vector2(432, 194)
+
+[node name="Saw" parent="Traps" instance=ExtResource("10_1iudq")]
+position = Vector2(300, 122)
+
+[node name="Spikeball" parent="Traps" instance=ExtResource("11_k0rhd")]
+position = Vector2(853, 175)
+
+[node name="Player" parent="." instance=ExtResource("7_ng8q2")]

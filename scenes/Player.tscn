@@ -210,7 +210,7 @@ sprite_frames = SubResource("SpriteFrames_gevl3")
 animation = &"idle"
 autoplay = "idle"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["player"]]
 position = Vector2(0, -11.5)
 shape = SubResource("RectangleShape2D_way7n")
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://dja4242xnmp3n"]
 
-[ext_resource type="Script" path="res://scenes/Trap.cs" id="1_njted"]
+[ext_resource type="Script" path="res://Trap.cs" id="1_m4oge"]
 [ext_resource type="Texture2D" uid="uid://c65w7551d8ubc" path="res://assets/textures/other/Spiked Ball.png" id="2_jdifw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_k073w"]
@@ -45,7 +45,7 @@ _data = {
 }
 
 [node name="Spikeball" type="Node2D" groups=["traps"]]
-script = ExtResource("1_njted")
+script = ExtResource("1_m4oge")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 8
